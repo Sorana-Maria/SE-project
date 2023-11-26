@@ -6,7 +6,7 @@ import time
 class TestTextGeneration(unittest.TestCase):
     def setUp(self):
         # Set up the model and tokenizer
-        self.model_directory = "Software"  # Adjust this if the model is saved in a different directory
+        self.model_directory = "Software" 
         self.model = AutoModelForCausalLM.from_pretrained(self.model_directory)
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_directory)
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -15,7 +15,7 @@ class TestTextGeneration(unittest.TestCase):
 
     def test_generate_text(self):
         prompt = "Test prompt."
-        max_length = 1000  # Set your desired max_length for testing
+        max_length = 1000  # Set the desired max_length for testing
 
         # Ensure the function doesn't raise any exceptions
         with self.assertLogs(level="ERROR"):
@@ -26,7 +26,7 @@ class TestTextGeneration(unittest.TestCase):
 
     def test_generate_text_with_long_prompt(self):
         prompt = "This is a very long prompt. " * 50
-        max_length = 2000  # Set your desired max_length for testing
+        max_length = 2000  # Set the desired max_length for testing
 
         # Ensure the function doesn't raise any exceptions
         with self.assertLogs(level="ERROR"):
@@ -34,8 +34,6 @@ class TestTextGeneration(unittest.TestCase):
 
         # Ensure the output is not empty
         self.assertTrue(output_text)
-
-    # Add more test cases as needed
 
 if __name__ == "__main__":
     unittest.main()
