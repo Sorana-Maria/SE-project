@@ -39,17 +39,14 @@ class TestCode(unittest.TestCase):
         generated_text = generate_text(prompt)
         self.assertTrue(isinstance(generated_text, str) and len(generated_text) > 0)
 
-    # Test the model against a long input
+    # Test the model against a longer input
     def test_generate_text_long_input(self):
         prompt = "This is a very long prompt. " * 50
         max_token_length = 2000
 
-        # The test will pass if a warning will be triggered and will fail in the other case.
-        with self.assertWarns(UserWarning):
-            output_text = generate_text(prompt, max_length=max_token_length)
-
-        # Ensure that the output is not empty
-        self.assertTrue(output_text)
+        #Check for raised error
+        with self.assertRaises(ValueError):
+            generate_text(prompt, max_length=max_length)
 
 if __name__ == '__main__':
     unittest.main()
