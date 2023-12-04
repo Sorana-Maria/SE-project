@@ -11,4 +11,4 @@ We trained the 7b version for 2 epochs and saved final weights and biases obtain
 languages.
 
 For scaling the system, we have decided to migrate the application to AWS instances. To launch an instance, we have installed an apache server on Ubuntu, and further configured mysql and php stack to deploy the html. Security group was
-adjusted accordingly. Also, the flask server was configured to run the actual model. You can try our application by accessing: http://54.226.137.162/ 
+adjusted accordingly. Also, the flask server was configured to run the actual model. You can try our application by accessing: ec2-52-91-198-116.compute-1.amazonaws.com 
