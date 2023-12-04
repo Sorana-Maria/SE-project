@@ -1,4 +1,4 @@
-# SE-project
+# SummarEase
 SummarEase is a software application designed to provide students with a centralized summary of study materials under the format of long or short documents, book chapters, articles, with an emphasis on scientific literature. 
 In order to fine tune the llama2-7b model, we used a trimmed version of the arxiv-summarization dataset from huggingface. (https://huggingface.co/datasets/ccdv/arxiv-summarization) in order to match our GPU capabilities. The dataset 
 contains a large volume of snippets from scientific articles, journals and book chapters that allow us to customize the language model to give abstract-like output which is particularly helpful for students in STEM.
