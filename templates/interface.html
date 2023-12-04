@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Summary Maker</title>
+    <link rel="stylesheet" href="\static\css\style_SE.css">
+</head>
+<body>
+
+<div class="e1_2">
+    <div class="e1_38">
+        <span class="e1_33">How it works?</span>
+        <span class="e1_32">About Us</span>
+        <span class="e1_34">Contact</span>
+    </div>
+    <div class="e1_39"></div>
+
+    <!-- File Upload Section -->
+    <div class="e1_47">
+
+        <input type="file" id="fileInput" name="file" accept=".pdf" style="display: none;" multiple/>
+        <label for="fileInput" class="e1_46" style="cursor: pointer;">
+            Add documents
+        </label>
+
+        <button id="uploadButton" class="upload-button" disabled>
+            Upload
+        </button>
+    </div>
+
+    <span class="e5_49">Welcome to SummarEase, where uploading your study materials means instant, effortless summarization. Easily distill lengthy content into concise summaries tailored to your needs. Experience the joy of efficient learning—upload, summarize, and download in a snap!</span>
+    <span class="e29_20">For any questions, feedback, or if you simply want to connect with us, our team at SummarEase is here for you! Feel free to reach out by email at summearease.contact.gmail.com</span>
+
+    <div class="e14_7">
+        <div class="e13_3"></div>
+        <span class="e13_4">Articles, whole books, journals and more!</span>
+    </div>
+    <span class="e14_12">SummarEase</span>
+    <span class="e14_10">Easy. Fast. Intuitive.</span>
+
+    <div class="e29_13">
+        <div class="e14_67"></div>
+        <span class="e14_69">S</span>
+        <span class="e16_212">E</span>
+    </div>
+
+    <div class="e24_57"></div>
+    <span class="e24_73">How it works</span>
+    <span class="e26_2">© SummarEase 2031. All rights reserved.</span>
+
+    <div class="e29_14">
+        <span class="e26_6">Home</span>
+        <div class="e26_4">
+            <div class="e24_78"></div>
+            <span class="e24_79">S</span>
+            <span class="e24_80">E</span>
+        </div>
+        <span class="e26_7">Contact</span>
+    </div>
+    <span class="e29_16">Contact</span>
+
+    <div class="e24_72"></div>
+    <div class="e33_55">
+            <pre style="color: aliceblue; font-size: 20px;">         
+                
+                
+                
+                
+ Fun fact! The idea for SummarEase was born during a late-night 
+  study session when our founders wished for a tool that could
+        magically  distill lengthy textbooks 
+                into concise summaries.</pre>
+                                    
+    </div>
+
+    <div class="e24_59"></div>
+
+    <div class="e33_62">
+        <pre  style="font-size:15px">
+Welcome to SummarEase, where simplifying your study materials is as easy as 1-2-3.  
+Here's a step-by-step guide to effortlessly distilling knowledge with us:
+
+1. Upload Your Material: Begin by uploading your study material, whether it's a lengthy article,
+textbook chapter, or research paper. 
+Simply drag and drop or click to upload your file. We support various formats for your convenience.
+
+2. Customize Your Preferences: Next, tailor the summarization process to your liking. 
+Customize preferences such as key themes, word count, or specific sections you want highlighted. 
+Our intuitive interface makes it easy to personalize your summaries.
+
+3. Get Your Instant Summary: Sit back and let SummarEase work its magic. 
+In moments, your study material transforms into a clear and concise summary. Preview the summary 
+and make any final adjustments. Once satisfied, download and access your summarized content instantly!</pre>
+       </div>
+
+<script>
+        document.getElementById('fileInput').addEventListener('change', function () {
+            var uploadButton = document.getElementById('uploadButton');
+            uploadButton.disabled = false;
+        });
+
+        document.getElementById('uploadButton').addEventListener('click', function () {
+            var fileInput = document.getElementById('fileInput');
+            if (fileInput.files.length > 0) {
+                var formData = new FormData();
+                for (var i = 0; i < fileInput.files.length; i++) {
+                    formData.append('file', fileInput.files[i]);
+                }
+
+                fetch('/upload', { //uploadingthe pdf files to the upload folder
+                    method: 'POST',
+                    body: formData
+                }).then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        
+                        window.location.href = '/summary';// Redirect to summary.html where the summary is displayed
+                    } else {
+                        alert('File upload failed. Server response: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error during file upload:', error);
+                    alert('File upload failed. Please try again.');
+                });
+            } else {
+                alert('Please select at least one file before uploading.');
+            }
+        });
+    </script>
+
+</body>
+</html>
